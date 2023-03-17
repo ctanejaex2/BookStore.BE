@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNumberString, IsOptional, IsString } from 'class-validator';
 
-export class BooksPagingDto {
+export class BooksFiltersDto {
     @ApiPropertyOptional({ default: 10 })
     @IsOptional()
     @IsNumberString()
@@ -15,15 +15,27 @@ export class BooksPagingDto {
     @IsOptional()
     @ApiPropertyOptional()
     @IsString()
-    search: string;
+    search?: string = '';
 
-    @ApiPropertyOptional({ default: 0.0 })
+    @ApiPropertyOptional({ default: 1.0 })
     @IsOptional()
     @IsNumberString()
-    minPrice: number;
+    minRating: number;
 
-    @ApiPropertyOptional({ default: 99999.0 })
+    @ApiPropertyOptional({ default: 5.0 })
     @IsOptional()
     @IsNumberString()
-    maxPrice: number;
+    maxRating: number;
+
+    @IsOptional()
+    @ApiPropertyOptional()
+    @IsString()
+    author?: string = '';
+}
+
+export class AuthorsRequestDto {
+    @IsOptional()
+    @ApiPropertyOptional()
+    @IsString()
+    search?: string = '';
 }
